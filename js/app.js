@@ -10,6 +10,8 @@ app.controller("TaskCtrl", function($scope, $localStorage, $filter) {
 
 	
 	$scope.posts = $localStorage.posts;
+	if(angular.isUndefined($scope.posts))
+		$scope.posts = [];
 	
 	$scope.currentPost = $scope.posts.length > 0 ? $scope.posts[0] : false;
 	
