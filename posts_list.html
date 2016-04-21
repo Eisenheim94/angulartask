@@ -1,0 +1,6 @@
+
+					<h2>Posts</h2>
+					<ul class="posts_list">
+						<li ng-repeat="post in posts | filter:{parent:false}:true" ng-include="'posts_tree.html'" ng-cloak></li>
+					</ul>
+					<div class="add_post" ng-include="'add_post.html'"></div>

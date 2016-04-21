@@ -1,0 +1,6 @@
+
+						<input type="text" class="form-control" ng-model="newPost.title" placeholder="Title">
+						<textarea class="form-control" ng-model="newPost.description" placeholder="Description"></textarea>
+						<select ng-model="newPost.parent" ng-options="posts.indexOf(a) as a.title for a in posts" class="form-control" ng-show="posts.length > 0">
+						</select>
+						<button class="btn btn-success" add-post ng-model="newPost">Create</button>

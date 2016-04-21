@@ -5,49 +5,18 @@
 		<title>AngularJS • eisenheim94 test task</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<style>[ng-cloak] { display: none; }</style>
 	</head>
 	<body ng-app="task" ng-controller="TaskCtrl">
-		<script type="text/ng-template" id="posts_tree.html">
-			<a ng-click="loadPost(post)">{{post.title}}</a>
-			<ul>
-				<li ng-repeat="post in posts | filter:{parent:posts.indexOf(post)}:true" ng-include="'posts_tree.html'"><a ng-click="loadPost(post)">{{post.title}}</a></li>
-			</ul>
-		</script>
+		
 		<header>
 			<h1>AngularJS test task</h1>
 		</header>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 area" id="list">
-					<h2>Posts</h2>
-					<ul class="posts_list">
-						<li ng-repeat="post in posts | filter:{parent:false}:true" ng-include="'posts_tree.html'"><a ng-click="loadPost(post)">{{post.title}}</a></li>
-					</ul>
-					<div class="add_cat">
-						<input type="text" class="form-control" ng-model="newPost.title" placeholder="Title">
-						<textarea class="form-control" ng-model="newPost.description" placeholder="Description"></textarea>
-						<select ng-model="newPost.parent" ng-options="posts.indexOf(a) as a.title for a in posts" class="form-control" ng-show="posts.length > 0">
-						</select>
-						<button class="btn btn-success" ng-click="addPost(newPost)">Create</button>
-					</div>
-				</div>
-				<div class="col-md-6 area" id="main">
-					<div class="content">
-						<h1>{{currentPost.title}}</h1>
-						<p>{{currentPost.description}}</p>
-					</div>
-				</div>
-				<div class="col-md-3 area" id="comments">
-					<h2>Comments</h2>
-					<ul class="comments_list">
-						<li ng-repeat="com in currentPost.comments">{{com.name}} wrote <div class="message">{{com.text}}</div></li>
-					</ul>
-					<div class="add_comment" ng-show="posts.length > 0">
-						<input type="text" class="form-control" ng-model="addComm.name" placeholder="Your name">
-						<textarea class="form-control" ng-model="addComm.text" placeholder="Enter message"></textarea>
-						<button class="btn btn-success" ng-click="addComment(addComm)">Add</button>
-					</div>
-				</div>
+				<div class="col-md-3 area" id="list" ng-include="'posts_list.html'"></div>
+				<div class="col-md-6 area" id="main" ng-include="'post.html'" ng-cloak></div>
+				<div class="col-md-3 area" id="comments" ng-include="'comments.html'"></div>
 			</div>
 		</div>
 		
@@ -55,6 +24,14 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/angular.js"></script>
 		<script src="js/ngStorage.min.js"></script>
+		<!--<script src="js/angular-route.js"></script>
+		<script src="js/angular-resource.js"></script>-->
 		<script src="js/app.js"></script>
+		<!--script src="js/storageController.js"></script-->
+		<script type="text/ng-template" src="posts_tree.html"></script>
+		<script type="text/ng-template" src="posts_list.html"></script>
+		<script type="text/ng-template" src="post.html"></script>
+		<script type="text/ng-template" src="comments.html"></script>
+		<script type="text/ng-template" src="add_post.html"></script>
 	</body>
 </html>

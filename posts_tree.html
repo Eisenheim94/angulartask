@@ -1,0 +1,5 @@
+
+			<a ng-click="loadPost(post)">{{post.title}}</a>
+			<ul>
+				<li ng-repeat="post in posts | filter:{parent:posts.indexOf(post)}:true" ng-include="'posts_tree.html'"><a ng-click="loadPost(post)">{{post.title}}</a></li>
+			</ul>

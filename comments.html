@@ -1,0 +1,10 @@
+
+					<h2>Comments</h2>
+					<ul class="comments_list">
+						<li ng-repeat="com in currentPost.comments" ng-cloak>{{com.name}} wrote<div class="message">{{com.text}}</div></li>
+					</ul>
+					<div class="add_comment" ng-show="posts.length > 0">
+						<input type="text" class="form-control" ng-model="addComm.name" placeholder="Your name">
+						<textarea class="form-control" ng-model="addComm.text" placeholder="Enter message"></textarea>
+						<button class="btn btn-success" add-comment ng-model="addComm">Add</button>
+					</div>
