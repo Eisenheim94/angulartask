@@ -1,21 +1,14 @@
 
-app.factory('taskStorage', function ($http, $injector) {
-	'use strict';
+app.factory('PostsStorage', [ '$rootScope', '$localStorage', function( $rootScope, $localStorage ) {
 
-	return $http.get('/api')
-		.then(function () {
-			return $injector.get('api');
-		}, function () {
-			return $injector.get('ngStorage');
-		});
-})
-.factory('ngStorage', function ($q) {
-	'use strict';
+	if ( !$rootScope.$storage ) {
+		$rootScope.$storage = $localStorage;
+	}
 
+	return {
 
-	var store = {
-		posts: ngStorage.posts;
+		listPosts: function() {
+			return  $rootScope.$storage.posts;
+		}
 	};
-
-	return store;
-});
+}]);

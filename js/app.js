@@ -6,33 +6,6 @@
 
 var app = angular.module("task", ["ngStorage"]);
 
-
-/*var app = angular.module('task', ['ngStorage', 'ngRoute', 'ngResource'])
-	.config(function ($routeProvider) {
-		'use strict';
-
-		var routeConfig = {
-			controller: 'TaskCtrl',
-			templateUrl: 'index.html',
-			resolve: {
-				store: function (taskStorage) {
-					// Get the correct module (API or localStorage).
-					return taskStorage.then(function (module) {
-						module.get(); // Fetch the todo records in the background.
-						return module;
-					});
-				}
-			}
-		};
-
-		$routeProvider
-			.when('/', routeConfig)
-			.otherwise({
-				redirectTo: '/'
-			});
-
-	});*/
-
 app.factory('$exceptionHandler', function() {
 	return function(exception, cause) {
 		exception.message += ' (caused by "' + cause + '")';
@@ -40,17 +13,10 @@ app.factory('$exceptionHandler', function() {
 	};
 });
 
-app.controller("TaskCtrl", function($scope, $localStorage, $filter) {
-//app.controller("TaskCtrl", function($scope, $routeParams, $filter, store) {
-
+app.controller("TaskCtrl", function($scope, $localStorage, $filter, PostsStorage) {
 	
-	//$scope.posts = store.posts;
-	/*if(angular.isUndefined($scope.posts))
-		$scope.posts = [];*/
 	
-	$scope.posts = $localStorage.posts;
-	if(angular.isUndefined($scope.posts))
-		$scope.posts = [];
+	$scope.posts = PostsStorage.listPosts();
 	
 	$scope.currentPost = $scope.posts.length > 0 ? $scope.posts[0] : false;
 	
